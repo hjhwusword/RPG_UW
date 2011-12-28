@@ -2,6 +2,11 @@ package Music;
 
 public enum MusicType {
 	// TODO finish the
+	
+	// Tesst
+	WAVTEST,
+	MIDTEST,
+	
 	// Combat spells and skills
 	FIRE,
 	FROST,
@@ -15,3 +20,5 @@ public enum MusicType {
 	// City Themes
 	
 }
+
+

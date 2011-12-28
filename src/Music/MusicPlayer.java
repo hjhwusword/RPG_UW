@@ -11,11 +11,15 @@ import util.Arguments;
 public final class MusicPlayer implements Runnable, Observer {
 	private String soundFile;
 	private boolean repeat;
+	private boolean isMuted;
+	private boolean isStopped;
 	
 	public MusicPlayer(String soundFile, boolean repeat) {
 		assert(!Arguments.isNotEmptyOrWhitespace(soundFile));
 		this.soundFile = soundFile;
 		this.repeat = repeat;
+		this.isMuted = false;
+		this.isStopped = false;
 	}
 	
 	@Override
@@ -48,15 +52,15 @@ public final class MusicPlayer implements Runnable, Observer {
 	            // Continuously read and play chunks of audio 
 	            int numRead = 0; 
 	            byte[] buf = new byte[line.getBufferSize()]; 
-	            while ((numRead = stream.read(buf, 0, buf.length)) >= 0) { 
+	            while (((numRead = stream.read(buf, 0, buf.length)) >= 0) && !this.isStopped) { 
 	                int offset = 0; 
-	                while (offset < numRead) { 
-	                    offset += line.write(buf, offset, numRead-offset); 
+	                while (offset < numRead && !this.isMuted) { 
+	                    offset += line.write(buf, offset, numRead-offset);
 	                } 
-	            } 
+	            }
 	            line.drain(); 
 	            line.stop();
-	    	}while (repeat);
+	    	}while (this.repeat && !this.isStopped);
 	    }catch (Exception e) { 
             e.printStackTrace(); 
             System.exit(1); 
@@ -66,6 +70,20 @@ public final class MusicPlayer implements Runnable, Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		System.out.println("Thread running " + this.soundFile + "Received Signal");		
+		Signals signal = (Signals) arg;
+		switch (signal) {
+		case MUSIC_ON:
+			this.isMuted = false;
+			System.out.println("Mute Audio: " + this.soundFile);
+			break;
+		case MUSIC_OFF:
+			this.isMuted = true;
+			System.out.println("Play Audio: " + this.soundFile);
+			break;
+		case MUSIC_CHANGE:
+			this.isStopped = true;
+			o.deleteObserver(this);
+			break;
+		}
 	}
 }
