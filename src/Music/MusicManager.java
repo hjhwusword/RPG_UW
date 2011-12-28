@@ -38,12 +38,12 @@ public final class MusicManager {
 	}
 	
 	public void playBackgroundMusic(MusicType mt) {
-		Arguments.isNotNull(mt);
+		assert(!Arguments.isNotNull(mt));
 		player(null, mt, true);
 	}
 	
 	public void playSound(LinkedList<MusicType> mts) {
-		Arguments.isNotNull(mts);
+		assert(!Arguments.isNotNull(mts));
 		player(mts, null, false);
 	}
 	

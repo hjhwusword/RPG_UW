@@ -25,10 +25,13 @@ public final class Arguments implements Serializable {
 	 * @throws IllegalArgumentException when the String passed is empty or
 	 * consists entirely of whitespace
 	 */
-	public static void isNotEmptyOrWhitespace(String test) {
-		if (test.trim().isEmpty())
-			throw new IllegalArgumentException("string cannot be empty or" +
+	public static boolean isNotEmptyOrWhitespace(String test) {
+		if (test.trim().isEmpty()) {
+			System.out.println("string cannot be empty or" +
 					"consist entirely of whitespace");
+			return false;
+		}
+		return true;
 	}
 	
 	/**
@@ -36,9 +39,12 @@ public final class Arguments implements Serializable {
 	 * @param test the boolean test to check if valid
 	 * @throws IllegalArgumentException if test is false, or "invalid"
 	 */
-	public static void isValid(boolean test) {
-		if (!test)
-			throw new IllegalArgumentException("test is invalid");
+	public static boolean isValid(boolean test) {
+		if (!test) {
+			System.out.println("test is invalid");
+			return false;
+		}
+		return true;
 	}
 	
 	/**
@@ -46,9 +52,12 @@ public final class Arguments implements Serializable {
 	 * @param o the object to be checked if null
 	 * @throws IllegalArgumentException if object o is null
 	 */
-	public static void isNotNull(Object o) {
-		if (o == null)
-			throw new IllegalArgumentException("cannot pass null");
+	public static boolean isNotNull(Object o) {
+		if (o == null) {
+			System.out.println("cannot pass null");
+			return false;
+		}
+		return true;
 	}
 	
 	/**
@@ -56,11 +65,14 @@ public final class Arguments implements Serializable {
 	 * @param a array whose elements are to be checked for nullness (var-args)
 	 * @throws IllegalArgumentException if any object in a is null
 	 */
-	public static void isNotNull(Object... a) {
+	public static boolean isNotNull(Object... a) {
 		for (Object o : a) {
-			if (o == null)
-				throw new IllegalArgumentException("cannot pass null");
+			if (o == null) {
+				System.out.println("cannot pass null");
+				return false;
+			}
 		}
+		return true;
 	}
 	
 	/**
@@ -68,12 +80,15 @@ public final class Arguments implements Serializable {
 	 * @param a array whose elements are to be checked if any is null
 	 * @throws IllegalArgumentException if any object in a is null
 	 */
-	public static void isNotNullArray(Object[] a) {
+	public static boolean isNotNullArray(Object[] a) {
 		isNotNull(a);
 		for (Object o : a) {
-			if (o == null)
-				throw new IllegalArgumentException("cannot pass null");
+			if (o == null) {
+				System.out.println("cannot pass null");
+				return false;
+			}
 		}
+		return true;
 	}
 	
 	/**
@@ -85,9 +100,12 @@ public final class Arguments implements Serializable {
 	 * @throws IndexOutOfBoundsException if number passed is outside
 	 * of min and max ranged passed
 	 */
-	public static void isInRange(int a, int min, int max) {
-		if (a < min || a > max)
-			throw new IndexOutOfBoundsException(a + ": must be between " + min + " and " + max);
+	public static boolean isInRange(int a, int min, int max) {
+		if (a < min || a > max){
+			System.out.println(a + ": must be between " + min + " and " + max);
+			return false;
+		}
+		return true;
 	}
 	
 	/**
@@ -97,8 +115,11 @@ public final class Arguments implements Serializable {
 	 * @throws IllegalArgumentException if number passed it smaller
 	 * than min value passed
 	 */
-	public static void isAtLeast(int a, int min) {
-		if (a < min)
-			throw new IndexOutOfBoundsException(a + ": must be at least " + min);
+	public static boolean isAtLeast(int a, int min) {
+		if (a < min) {
+			System.out.println(a + ": must be at least " + min);
+			return false;
+		}
+		return true;
 	}
 }

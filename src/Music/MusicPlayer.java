@@ -13,7 +13,7 @@ public final class MusicPlayer implements Runnable, Observer {
 	private boolean repeat;
 	
 	public MusicPlayer(String soundFile, boolean repeat) {
-		Arguments.isNotEmptyOrWhitespace(soundFile);
+		assert(!Arguments.isNotEmptyOrWhitespace(soundFile));
 		this.soundFile = soundFile;
 		this.repeat = repeat;
 	}
