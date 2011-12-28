@@ -8,7 +8,7 @@ import java.util.Observable;
 import util.Arguments;
 
 public final class MusicManager extends Observable {
-	public static final String audioDir = "./audio";
+	public static final String AUDIO_DIR = "./audio/";
 	private static MusicManager mm;
 	
 	// fields
@@ -51,16 +51,17 @@ public final class MusicManager extends Observable {
 				e.printStackTrace();
 			}
 		}
-		MusicPlayer bgm = new MusicPlayer(audioList.get(mt), true);
+		MusicPlayer bgm = new MusicPlayer(AUDIO_DIR + audioList.get(mt), true);
 		this.addObserver(bgm);
 		background = new Thread(bgm);
+		background.start();
 	}
 	
 	public void playSound(LinkedList<MusicType> mts) {
 		assert(!Arguments.isNotNull(mts));
 		if (this.musicOnOff) {
 			for (MusicType type : mts) {
-				new Thread(new MusicPlayer(audioList.get(type), false)).start();
+				new Thread(new MusicPlayer(AUDIO_DIR + audioList.get(type), false)).start();
 			}
 		}
 	}
@@ -72,5 +73,9 @@ public final class MusicManager extends Observable {
 			notifyObservers(Signals.MUSIC_ON);
 		else
 			notifyObservers(Signals.MUSIC_OFF);
+	}
+	
+	public boolean getMusicOnOff() {
+		return this.musicOnOff;
 	}
 }

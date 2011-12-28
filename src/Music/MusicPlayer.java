@@ -52,9 +52,9 @@ public final class MusicPlayer implements Runnable, Observer {
 	            // Continuously read and play chunks of audio 
 	            int numRead = 0; 
 	            byte[] buf = new byte[line.getBufferSize()]; 
-	            while (((numRead = stream.read(buf, 0, buf.length)) >= 0) && !this.isStopped) { 
+	            while (((numRead = stream.read(buf, 0, buf.length)) >= 0) && !this.isStopped) {
 	                int offset = 0; 
-	                while (offset < numRead && !this.isMuted) { 
+	                while (offset < numRead && !this.isMuted) {
 	                    offset += line.write(buf, offset, numRead-offset);
 	                } 
 	            }
