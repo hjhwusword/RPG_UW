@@ -29,7 +29,8 @@ public final class MusicManager extends Observable {
 /*		for (MusicType type : MusicType.values()) {
 			
 		}*/
-		list.put(MusicType.WAVTEST, "test.wav");
+		//list.put(MusicType.OGGTEST, "030-Door07.ogg");
+		list.put(MusicType.OGGTEST, "030-Door07.ogg");
 		return list;
 	}
 	
@@ -51,7 +52,7 @@ public final class MusicManager extends Observable {
 				e.printStackTrace();
 			}
 		}
-		MusicPlayer bgm = new MusicPlayer(AUDIO_DIR + audioList.get(mt), true);
+		MusicPlayer bgm = new OggPlayer(AUDIO_DIR + audioList.get(mt), true);
 		this.addObserver(bgm);
 		background = new Thread(bgm);
 		background.start();
@@ -61,7 +62,7 @@ public final class MusicManager extends Observable {
 		assert(!Arguments.isNotNull(mts));
 		if (this.musicOnOff) {
 			for (MusicType type : mts) {
-				new Thread(new MusicPlayer(AUDIO_DIR + audioList.get(type), false)).start();
+//				new Thread(new MusicPlayer(AUDIO_DIR + audioList.get(type), false)).start();
 			}
 		}
 	}

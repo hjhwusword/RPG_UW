@@ -1,6 +1,4 @@
 package util;
-import java.io.Serializable;
-
 
 /**
  * CSPandas, CSE 331, Spring 2011
@@ -13,7 +11,7 @@ import java.io.Serializable;
  * @version Spring 2011 v1.0
  */
 
-public final class Arguments implements Serializable {
+public final class Arguments {
 	private static final long serialVersionUID = 1L;
 	
 	private Arguments() {}

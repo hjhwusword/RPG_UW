@@ -3,9 +3,10 @@ package Music;
 public enum MusicType {
 	// TODO finish the
 	
-	// Tesst
+	// Test
 	WAVTEST,
 	MIDTEST,
+	OGGTEST,
 	
 	// Combat spells and skills
 	FIRE,
