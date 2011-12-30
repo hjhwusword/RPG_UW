@@ -21,7 +21,6 @@ public final class MidiPlayer extends MusicPlayer implements MetaEventListener {
 	
 	private boolean paused;
 	private Sequencer sequencer;
-	private Thread th;
 	
 	public MidiPlayer(String fileName, boolean loop) {
 		super(fileName, loop);
@@ -47,7 +46,6 @@ public final class MidiPlayer extends MusicPlayer implements MetaEventListener {
 
 	@Override
 	public void run() {
-		th = Thread.currentThread();
 		sequencer.setTickPosition(0);
 		if (!this.isPaused())
 			sequencer.start();

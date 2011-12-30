@@ -1,25 +1,5 @@
 package Music;
 
-public enum MusicType {
-	// TODO finish the
-	
-	// Test
-	WAVTEST,
-	MIDTEST,
-	OGGTEST,
-	
-	// Combat spells and skills
-	FIRE,
-	FROST,
-	
-	// Combat Themes
-	
-	// General
-	OPEN_CHEST,
-	LEVEL_UP;
-	
-	// City Themes
-	
-}
+public interface MusicType {}
 
 

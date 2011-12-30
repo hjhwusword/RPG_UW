@@ -9,7 +9,7 @@ public abstract class MusicPlayer implements Runnable, Observer {
 	private boolean loop;
 	
 	public MusicPlayer(String fileName, boolean loop) {
-		assert(!Arguments.isNotEmptyOrWhitespace(fileName));
+		assert(Arguments.isNotEmptyOrWhitespace(fileName));
 		this.fileName = fileName;
 		this.loop = loop;
 	}

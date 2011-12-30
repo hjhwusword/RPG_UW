@@ -29,8 +29,10 @@ public final class MusicManager extends Observable {
 /*		for (MusicType type : MusicType.values()) {
 			
 		}*/
-		//list.put(MusicType.OGGTEST, "030-Door07.ogg");
-		list.put(MusicType.OGGTEST, "030-Door07.ogg");
+		list.put(MusicOgg.OGGTEST, "030-Door07.ogg");
+		list.put(MusicOgg.OGGTEST2, "082-Monster04.ogg");
+		list.put(MusicMidi.MIDITEST, "001-Battle01.mid");
+		list.put(MusicMidi.MIDITEST2, "063-Slow06.mid");
 		return list;
 	}
 	
@@ -42,7 +44,7 @@ public final class MusicManager extends Observable {
 	}
 	
 	public void playBackgroundMusic(MusicType mt) {
-		assert(!Arguments.isNotNull(mt));
+		assert(Arguments.isNotNull(mt));
 		if (this.background != null) {
 			try {
 				setChanged();
@@ -52,19 +54,29 @@ public final class MusicManager extends Observable {
 				e.printStackTrace();
 			}
 		}
-		MusicPlayer bgm = new OggPlayer(AUDIO_DIR + audioList.get(mt), true);
+		MusicPlayer bgm = setupMusicPlayer(mt, true);
 		this.addObserver(bgm);
 		background = new Thread(bgm);
 		background.start();
 	}
 	
 	public void playSound(LinkedList<MusicType> mts) {
-		assert(!Arguments.isNotNull(mts));
+		assert(Arguments.isNotNull(mts));
 		if (this.musicOnOff) {
 			for (MusicType type : mts) {
-//				new Thread(new MusicPlayer(AUDIO_DIR + audioList.get(type), false)).start();
+				new Thread(setupMusicPlayer(type, false)).start();
 			}
 		}
+	}
+	
+	private MusicPlayer setupMusicPlayer(MusicType mt, boolean loop) {
+		if (mt.getClass() == MusicOgg.class)
+			return new OggPlayer(AUDIO_DIR + audioList.get(mt), loop);
+		else if (mt.getClass() == MusicMidi.class)
+			return new MidiPlayer(AUDIO_DIR + audioList.get(mt), loop);
+		// safety check
+		assert(true);
+		return null;
 	}
 	
 	public void setMusicOnOff(boolean onOff) {
