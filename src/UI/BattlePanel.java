@@ -15,14 +15,14 @@ import util.RPGWalkLoader;
 import util.SeriesImageLoader;
 
 //import UI.RPGPanel.TAdapter;
-import Character.Character;
-import Combat.Animation;
-import Combat.Battle;
-import Combat.Field;
-
+import battle.Animation;
+import battle.Battle;
+import battle.Character;
+import battle.Field;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observer;
 
 public class BattlePanel extends JPanel implements ActionListener {
 	
@@ -61,7 +61,6 @@ public class BattlePanel extends JPanel implements ActionListener {
 			}
 			
 		}
-		
 	}
 	
 	public BattlePanel(int width, int height) {
@@ -112,8 +111,6 @@ public class BattlePanel extends JPanel implements ActionListener {
 		one.add(new Character(getThree(6)));
 		one.add(new Character(getThree(7)));
 	
-		
-		
 		
 		wk.setDirection(RPGWalkLoader.Direction.LEFT);
 		
@@ -209,6 +206,10 @@ public class BattlePanel extends JPanel implements ActionListener {
 		if(battle != null)
 			battle.update();
 		repaint();
+	}
+	
+	public void addObserver(Observer ob) {
+		battle.addObserver(ob);
 	}
 	/*
 	private class BattleMouse implements MouseListener {

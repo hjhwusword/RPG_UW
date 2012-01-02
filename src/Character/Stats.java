@@ -1,4 +1,4 @@
-package Character;
+package battle;
 
 public class Stats {
 	private int hp;

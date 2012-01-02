@@ -1,4 +1,4 @@
-package Combat;
+package battle;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -20,7 +20,6 @@ import javax.swing.SwingConstants;
 import util.MusicPlayer;
 import util.SeriesImageLoader;
 
-import Character.Character;
 import UI.BattleSkillPanel;
 
 public class Battle {

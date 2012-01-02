@@ -1,13 +1,10 @@
-package Character;
+package battle;
 
 import java.awt.Image;
 import java.util.*;
 
-import Character.Skill.Skills;
-import Character.Skill.Status;
-import Combat.Field;
-import Item_Equip.Item;
-import Item_Equip.Item.Items;
+import battle.Item.Items;
+import battle.Skill.Skills;
 
 
 public class Character {

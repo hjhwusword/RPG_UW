@@ -1,12 +1,7 @@
-package Combat;
+package battle;
 
 import java.awt.Point;
 import java.util.*;
-
-import Character.Character;
-import Character.Skill;
-import Character.Stats;
-import Item_Equip.Item;
 import util.*;
 
 public class BattleAction implements Comparable<BattleAction> {

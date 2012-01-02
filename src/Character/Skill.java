@@ -1,4 +1,4 @@
-package Character;
+package battle;
 
 import java.awt.Graphics;
 import java.awt.Point;
@@ -6,10 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-
-import Combat.Animation;
-import Combat.Animation2;
-import Combat.BattleAction;
 
 import util.*;
 

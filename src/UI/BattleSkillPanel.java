@@ -19,10 +19,10 @@ import javax.swing.Timer;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import Character.Character;
-import Character.Skill;
-import Combat.Animation;
-import Item_Equip.Item;
+import battle.Animation;
+import battle.Character;
+import battle.Item;
+import battle.Skill;
 
 import util.SeriesImageLoader;
 

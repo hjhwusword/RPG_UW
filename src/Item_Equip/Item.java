@@ -1,7 +1,4 @@
-package Item_Equip;
-
-import Character.Skill;
-import Character.Stats;
+package battle;
 
 public class Item {
 	

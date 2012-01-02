@@ -1,4 +1,4 @@
-package Combat;
+package battle;
 import java.awt.Button;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -11,11 +11,8 @@ import javax.swing.*;
 
 import util.SeriesImageLoader;
 
-import Character.Character;
-import Character.Skill;
-import Combat.Battle.BattleEvent;
-import Item_Equip.Item;
 import UI.BattleSkillPanel;
+import battle.Battle.BattleEvent;
 
 public class Field {
 	
