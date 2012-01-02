@@ -56,6 +56,8 @@ public class BattleSkillPanel extends JPanel implements ActionListener {
 		skillList = new JList(skillListModel);
 		scroll = new JScrollPane(skillList);
 		skillList.addListSelectionListener(new SkillListListener());
+		scroll.getVerticalScrollBar().setPreferredSize (new Dimension(0,0)); 
+		scroll.getHorizontalScrollBar().setPreferredSize (new Dimension(0,0)); 
 		//scroll.setPreferredSize(new Dimension(100, 100));
 		//skillList.add(new JScrollPane());
 		//skillList
@@ -70,8 +72,6 @@ public class BattleSkillPanel extends JPanel implements ActionListener {
 		it = null;
 		
 		this.setBackground(Color.BLACK);
-		
-		
 		
 		
 		timer = new Timer(50, this);

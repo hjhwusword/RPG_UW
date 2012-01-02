@@ -77,7 +77,7 @@ public class BattleWindow extends JFrame implements Observer {
 		
 		// music
 		player = new MusicPlayer("audio/sceneVX_2.mid");
-		player.start();
+	//	player.start();
 	}
 	
 	public static void main(String arg[]) {
