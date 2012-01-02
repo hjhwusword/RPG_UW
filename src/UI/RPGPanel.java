@@ -3,7 +3,7 @@ package UI;
 import javax.swing.*;
 
 import util.SeriesImageLoader;
-import Combat.Animation;
+import battle.Animation;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
