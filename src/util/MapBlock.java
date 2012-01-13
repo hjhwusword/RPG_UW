@@ -1,5 +1,11 @@
 package util;
 
+/**
+ * stores, set and retreieve the information
+ * of a map block.
+ * @author chiehwu
+ *
+ */
 public final class MapBlock {
 	private static final boolean DEBUG = false;
 	
@@ -59,28 +65,48 @@ public final class MapBlock {
 		return ((data[MapBlock.BLOCK_SIZE - 1] & this.eventBit) != 0);
 	}
 	
+	/**
+	 * set the MapBlock to walkable/non-walkable
+	 * @param walkable true, set to walkable, false otherwise
+	 */
 	public void setWalkable(boolean walkable) {
 		byte d = data[MapBlock.BLOCK_SIZE - 1];
 		data[MapBlock.BLOCK_SIZE - 1] = walkable ? (byte) (d | this.walkableBit) : 
 												(byte) (d & (-1 ^ this.walkableBit));;
 	}
 	
+	/**
+	 * set the MapBlock to an event block or turn it off
+	 * @param isEvent true set to an event, false otherwise
+	 */
 	public void setEvent(boolean isEvent) {
 		byte d = data[MapBlock.BLOCK_SIZE - 1];
 		data[MapBlock.BLOCK_SIZE - 1] = isEvent ? (byte) (d | this.eventBit) : 
 												(byte) (d & (-1 ^ this.eventBit));;
 	}
 	
+	/**
+	 * get the picture ID of layer 1
+	 * @return Picture ID of layer1
+	 */
 	public int getLayer1_ID() {
 		par.setLayerIDParameter(0);
 		return this.getID();
 	}
 	
+	/**
+	 * gets the picture id of layer2
+	 * @return the picture id of layer2
+	 */
 	public int getLayer2_ID() {
 		par.setLayerIDParameter(1);
 		return this.getID();
 	}
 	
+	/**
+	 * gets the block id
+	 * @return the block id
+	 */
 	public int getBlock_ID() {
 		par.setBlockIDParameter();
 		return this.getID();
@@ -107,6 +133,12 @@ public final class MapBlock {
 		return id;
 	}
 	
+	/**
+	 * sets the layer1 id to the given id
+	 * @param pic_id the id needed to be set
+	 * @throws IllegalArugumentException when the size of pic_id
+	 * 			is greater than PIC_ID_SIZE
+	 */
 	public void setLayer1_ID(int pic_id) {
 		if (!this.isValidValue(pic_id, MapBlock.PIC_ID_SIZE))
 			throw new IllegalArgumentException("Invalid picture ID");		
@@ -114,6 +146,12 @@ public final class MapBlock {
 		setID(pic_id);
 	}
 	
+	/**
+	 * sets the layer2 id to the given id
+	 * @param pic_id the id needed to be set
+	 * @throws IllegalArugumentException when the size of pic_id
+	 * 			is greater than PIC_ID_SIZE
+	 */
 	public void setLayer2_ID(int pic_id) {
 		if (!this.isValidValue(pic_id, MapBlock.PIC_ID_SIZE))
 			throw new IllegalArgumentException("Invalid picture ID");
@@ -121,6 +159,12 @@ public final class MapBlock {
 		setID(pic_id);
 	}
 	
+	/**
+	 * sets the block id to the given id
+	 * @param blockID the id needed to be set
+	 * @throws IllegalArugumentException when the size of blockID
+	 * 			is greater than BLOCK_ID_SIZE
+	 */
 	public void setBlock_ID(int blockID) {
 		if (!this.isValidValue(blockID, MapBlock.BLOCK_ID_SIZE))
 			throw new IllegalArgumentException("Invalid block ID");		

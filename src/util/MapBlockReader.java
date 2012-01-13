@@ -4,6 +4,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.NoSuchElementException;
 
+/**
+ * 
+ * @author chiehwu
+ *
+ */
 public final class MapBlockReader {	
 	// fields
 	private InputStream input;
