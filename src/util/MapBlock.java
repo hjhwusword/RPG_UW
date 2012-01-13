@@ -19,10 +19,21 @@ public final class MapBlock {
 	private byte[] data;
 	private Parameter par;
 	
+	/**
+	 * Constructs a MapBlock with no data assigned
+	 */
 	public MapBlock() {
 		this(new byte[MapBlock.BLOCK_SIZE]);		
 	}
 	
+	/**
+	 * Constructs a MapBlock with the given data
+	 * @param data an array of bytes representing the information
+	 * @throws IllegalArgumentException when the given data length 
+	 * is not equal to the Block size
+	 * @pre size of picture id should be greater than a byte
+	 * @pre size of block id should be greater than a byte
+	 */
 	public MapBlock(byte[] data) {
 		if (data.length != MapBlock.BLOCK_SIZE)
 			throw new IllegalArgumentException("data size should be " + BLOCK_SIZE);
@@ -32,10 +43,18 @@ public final class MapBlock {
 		par = new Parameter();
 	}
 	
+	/**
+	 * check if the block is walkable
+	 * @return true if the block is walkable, false otherwise
+	 */
 	public boolean isWalkable() {
 		return ((data[MapBlock.BLOCK_SIZE - 1] & this.walkableBit) != 0);
 	}
 	
+	/**
+	 * check if the block has an event
+	 * @return true if the block has an event, false otherwise
+	 */
 	public boolean hasEvent() {
 		return ((data[MapBlock.BLOCK_SIZE - 1] & this.eventBit) != 0);
 	}
@@ -67,6 +86,7 @@ public final class MapBlock {
 		return this.getID();
 	}
 	
+	// get the id of the assigned parameters
 	private int getID() {
 		int id = 0;
 		if (par.upper != 0) {
@@ -108,6 +128,8 @@ public final class MapBlock {
 		setID(blockID);
 	}
 	
+	// set the data to the given id 
+	// according to the parameters
 	private void setID(int id) {
 		if (par.lower != 0) {
 			byte lower = (byte) (id << par.lower_rest);
@@ -135,6 +157,10 @@ public final class MapBlock {
 		return true;
 	}
 	
+	/**
+	 * produce a copy of the data of the map block
+	 * @return an array of bytes representing the information
+	 */
 	byte[] getData() {
 		byte[] ret = new byte[this.data.length];
 		for(int i = 0; i < ret.length; i++) {
@@ -143,6 +169,8 @@ public final class MapBlock {
 		return ret;
 	}
 	
+	// stores the parameters needed for storing and 
+	// retrieving id
 	private class Parameter {
 		private int pos;
 		private int offset;
@@ -151,6 +179,7 @@ public final class MapBlock {
 		private int lower_rest;
 		private int len;
 		
+		// set the parameters respecting to layer
 		private void setLayerIDParameter(int layer) {
 			pos = MapBlock.PIC_ID_SIZE * layer / Byte.SIZE;
 			offset = MapBlock.PIC_ID_SIZE * layer % Byte.SIZE;
@@ -160,6 +189,7 @@ public final class MapBlock {
 			len = (MapBlock.PIC_ID_SIZE - upper - lower) / Byte.SIZE;
 		}
 		
+		// set the parameters respecting to block
 		private void setBlockIDParameter() {
 			pos = MapBlock.PIC_ID_SIZE * MapBlock.NUM_LAYER / Byte.SIZE;
 			offset = MapBlock.PIC_ID_SIZE * MapBlock.NUM_LAYER % Byte.SIZE;
