@@ -50,7 +50,7 @@ public final class MapBlock {
 	}
 	
 	/**
-	 * check if the block is walkable
+	 * checks if the block is walkable
 	 * @return true if the block is walkable, false otherwise
 	 */
 	public boolean isWalkable() {
@@ -58,7 +58,7 @@ public final class MapBlock {
 	}
 	
 	/**
-	 * check if the block has an event
+	 * checks if the block has an event
 	 * @return true if the block has an event, false otherwise
 	 */
 	public boolean hasEvent() {
@@ -66,7 +66,7 @@ public final class MapBlock {
 	}
 	
 	/**
-	 * set the MapBlock to walkable/non-walkable
+	 * sets the MapBlock to walkable/non-walkable
 	 * @param walkable true, set to walkable, false otherwise
 	 */
 	public void setWalkable(boolean walkable) {
@@ -76,7 +76,7 @@ public final class MapBlock {
 	}
 	
 	/**
-	 * set the MapBlock to an event block or turn it off
+	 * sets the MapBlock to an event block or turn it off
 	 * @param isEvent true set to an event, false otherwise
 	 */
 	public void setEvent(boolean isEvent) {
@@ -86,7 +86,7 @@ public final class MapBlock {
 	}
 	
 	/**
-	 * get the picture ID of layer 1
+	 * gets the picture ID of layer 1
 	 * @return Picture ID of layer1
 	 */
 	public int getLayer1_ID() {
@@ -112,7 +112,7 @@ public final class MapBlock {
 		return this.getID();
 	}
 	
-	// get the id of the assigned parameters
+	// gets the id of the assigned parameters
 	private int getID() {
 		int id = 0;
 		if (par.upper != 0) {
@@ -172,7 +172,7 @@ public final class MapBlock {
 		setID(blockID);
 	}
 	
-	// set the data to the given id 
+	// sets the data to the given id 
 	// according to the parameters
 	private void setID(int id) {
 		if (par.lower != 0) {
@@ -193,7 +193,7 @@ public final class MapBlock {
 		}
 	}
 	
-	// Check if the size of given value cannot be contained
+	// Checks if the size of given value cannot be contained
 	// within the given size
 	private boolean isValidValue(int value, int size) {
 		if ((value & (-1 << size)) != 0)
@@ -223,7 +223,7 @@ public final class MapBlock {
 		private int lower_rest;
 		private int len;
 		
-		// set the parameters respecting to layer
+		// sets the parameters respecting to layer
 		private void setLayerIDParameter(int layer) {
 			pos = MapBlock.PIC_ID_SIZE * layer / Byte.SIZE;
 			offset = MapBlock.PIC_ID_SIZE * layer % Byte.SIZE;
@@ -233,7 +233,7 @@ public final class MapBlock {
 			len = (MapBlock.PIC_ID_SIZE - upper - lower) / Byte.SIZE;
 		}
 		
-		// set the parameters respecting to block
+		// sets the parameters respecting to block
 		private void setBlockIDParameter() {
 			pos = MapBlock.PIC_ID_SIZE * MapBlock.NUM_LAYER / Byte.SIZE;
 			offset = MapBlock.PIC_ID_SIZE * MapBlock.NUM_LAYER % Byte.SIZE;
