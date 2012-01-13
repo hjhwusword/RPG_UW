@@ -1,8 +1,8 @@
 picLayer1_ID	10
 picLayer2_ID	10
-boxID			13
+boxID			12
 header			2
-option			5
+option			6
 
 header:
 walkable	event
