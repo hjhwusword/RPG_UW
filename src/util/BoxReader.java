@@ -19,7 +19,7 @@ public final class BoxReader {
 		
 	}
 	
-	public MapBox getNextBox() {
+	public MapBlock getNextBox() {
 		return null;
 	}
 	
