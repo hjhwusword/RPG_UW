@@ -7,6 +7,10 @@ public final class BoxReader {
 	// fields
 	private InputStream input;
 	
+	/**
+	 * 
+	 * @param input
+	 */
 	public BoxReader(InputStream input) {
 		this.input = input;
 	}
