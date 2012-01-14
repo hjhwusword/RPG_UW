@@ -35,12 +35,15 @@ public final class MapBlock {
 	/**
 	 * Constructs a MapBlock with the given data
 	 * @param data an array of bytes representing the information
-	 * @throws IllegalArgumentException when the given data length 
+	 * @throw IllegalArgumentException when the given data length 
 	 * is not equal to the Block size
+	 * @throw IllegalArgumentException when the data is null
 	 * @pre size of picture id should be greater than a byte
 	 * @pre size of block id should be greater than a byte
 	 */
 	public MapBlock(byte[] data) {
+		if (Arguments.isNotNull(data))
+			throw new IllegalArgumentException("data is null");			
 		if (data.length != MapBlock.BLOCK_SIZE)
 			throw new IllegalArgumentException("data size should be " + BLOCK_SIZE);
 		assert(MapBlock.PIC_ID_SIZE >= Byte.SIZE);
