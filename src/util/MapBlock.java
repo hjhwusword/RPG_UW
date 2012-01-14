@@ -86,20 +86,14 @@ public final class MapBlock {
 	}
 	
 	/**
-	 * gets the picture ID of layer 1
-	 * @return Picture ID of layer1
+	 * gets the picture id of the given layer
+	 * @param layer the layer whose id is needed
+	 * @return the picture id of layer
 	 */
-	public int getLayer1_ID() {
-		par.setLayerIDParameter(0);
-		return this.getID();
-	}
-	
-	/**
-	 * gets the picture id of layer2
-	 * @return the picture id of layer2
-	 */
-	public int getLayer2_ID() {
-		par.setLayerIDParameter(1);
+	public int getLayer_ID(int layer) {
+		if (layer > MapBlock.NUM_LAYER)
+			throw new IllegalArgumentException("Layer should be less or equal to " + MapBlock.NUM_LAYER);
+		par.setLayerIDParameter(layer - 1);
 		return this.getID();
 	}
 	
@@ -134,28 +128,20 @@ public final class MapBlock {
 	}
 	
 	/**
-	 * sets the layer1 id to the given id
+	 * sets the given layer id to the given id
+	 * @param layer the layer needed to be set
 	 * @param pic_id the id needed to be set
+	 * @throws IllegalArgumentException when layer is larger than
+	 * 			the default number of layers
 	 * @throws IllegalArugumentException when the size of pic_id
 	 * 			is greater than PIC_ID_SIZE
 	 */
-	public void setLayer1_ID(int pic_id) {
+	public void setLayer_ID(int layer, int pic_id) {
+		if (layer > MapBlock.NUM_LAYER)
+			throw new IllegalArgumentException("Layer should be less or equal to " + MapBlock.NUM_LAYER);
 		if (!this.isValidValue(pic_id, MapBlock.PIC_ID_SIZE))
 			throw new IllegalArgumentException("Invalid picture ID");		
-		par.setLayerIDParameter(0);		
-		setID(pic_id);
-	}
-	
-	/**
-	 * sets the layer2 id to the given id
-	 * @param pic_id the id needed to be set
-	 * @throws IllegalArugumentException when the size of pic_id
-	 * 			is greater than PIC_ID_SIZE
-	 */
-	public void setLayer2_ID(int pic_id) {
-		if (!this.isValidValue(pic_id, MapBlock.PIC_ID_SIZE))
-			throw new IllegalArgumentException("Invalid picture ID");
-		par.setLayerIDParameter(1);		
+		par.setLayerIDParameter(layer - 1);		
 		setID(pic_id);
 	}
 	

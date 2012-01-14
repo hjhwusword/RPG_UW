@@ -8,6 +8,7 @@ public final class MapBlockWriter {
 	
 	public MapBlockWriter(OutputStream output) {
 		this.output = output;
+		
 	}
 	
 	public void write(MapBlock mb) {
