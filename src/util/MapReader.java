@@ -9,13 +9,13 @@ import java.util.NoSuchElementException;
  * @author chiehwu
  *
  */
-public final class MapBlockReader {	
+public final class MapReader {	
 	// fields
 	private InputStream input;
 	private byte[] next;
 	private boolean hasNext;
 	
-	public MapBlockReader(InputStream input) {
+	public MapReader(InputStream input) {
 		if (!Arguments.isNotNull(input))
 			throw new IllegalArgumentException();
 		
