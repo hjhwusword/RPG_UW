@@ -1,4 +1,7 @@
-package util;
+package mapMaker;
+
+import util.Arguments;
+import util.Debug;
 
 /**
  * stores, set and retreieve the information

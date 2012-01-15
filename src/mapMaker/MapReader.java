@@ -1,8 +1,10 @@
-package util;
+package mapMaker;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.NoSuchElementException;
+
+import util.Arguments;
 
 /**
  * reads the data of a map

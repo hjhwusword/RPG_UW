@@ -1,7 +1,9 @@
-package util;
+package mapMaker;
 
 import java.io.IOException;
 import java.io.OutputStream;
+
+import util.Arguments;
 
 /**
  * writes blocks into a output stream
