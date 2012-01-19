@@ -1,10 +1,10 @@
-package mapMaker;
+package Map.MapBlock;
 
 import util.Arguments;
 import util.Debug;
 
 /**
- * stores, set and retreieve the information
+ * stores, set and retrieve the information
  * of a map block.
  * @author chiehwu
  *
@@ -13,11 +13,11 @@ public final class MapBlock {
 	private static final boolean DEBUG = false;
 	
 	public static final byte BLOCK_SIZE = 
-				(byte) (Math.ceil((MapBlock.PIC_ID_SIZE * MapBlock.NUM_LAYER 
+				(byte) (Math.ceil((MapBlock.IMG_ID_SIZE * MapBlock.NUM_LAYER 
 				+ MapBlock.BLOCK_ID_SIZE) * 1.0 / Byte.SIZE) + 1); // in byte
 	
 	// in bit
-	public static final byte PIC_ID_SIZE	= 10;
+	public static final byte IMG_ID_SIZE	= 10;
 	public static final byte BLOCK_ID_SIZE 	= 12;
 	public static final byte HEADER_SIZE	= 2;
 	public static final byte NUM_LAYER		= 2;
@@ -41,7 +41,7 @@ public final class MapBlock {
 	 * @throw IllegalArgumentException when the given data length 
 	 * is not equal to the Block size
 	 * @throw IllegalArgumentException when the data is null
-	 * @pre size of picture id should be greater than a byte
+	 * @pre size of image id should be greater than a byte
 	 * @pre size of block id should be greater than a byte
 	 */
 	public MapBlock(byte[] data) {
@@ -49,7 +49,7 @@ public final class MapBlock {
 			throw new IllegalArgumentException("data is null");			
 		if (data.length != MapBlock.BLOCK_SIZE)
 			throw new IllegalArgumentException("data size should be " + BLOCK_SIZE);
-		assert(MapBlock.PIC_ID_SIZE >= Byte.SIZE);
+		assert(MapBlock.IMG_ID_SIZE >= Byte.SIZE);
 		assert(MapBlock.BLOCK_ID_SIZE >= Byte.SIZE);
 		this.data = data;
 		par = new Parameter();
@@ -92,9 +92,9 @@ public final class MapBlock {
 	}
 	
 	/**
-	 * gets the picture id of the given layer
+	 * gets the image id of the given layer
 	 * @param layer the layer whose id is needed
-	 * @return the picture id of layer
+	 * @return the image id of layer
 	 * @throw IllegalArgumentException if layer is larger than NUM_LAYER or less than 1
 	 */
 	public int getLayer_ID(int layer) {
@@ -137,19 +137,19 @@ public final class MapBlock {
 	/**
 	 * sets the given layer id to the given id
 	 * @param layer the layer needed to be set
-	 * @param pic_id the id needed to be set
+	 * @param img_id the id needed to be set
 	 * @throws IllegalArgumentException when layer is larger than
 	 * 			the default number of layers or less than 1
-	 * @throws IllegalArugumentException when the size of pic_id
-	 * 			is greater than PIC_ID_SIZE
+	 * @throws IllegalArugumentException when the size of img_id
+	 * 			is greater than IMG_ID_SIZE
 	 */
-	public void setLayer_ID(int layer, int pic_id) {
+	public void setLayer_ID(int layer, int img_id) {
 		if (!Arguments.isInRange(layer, 1, MapBlock.NUM_LAYER + 1))
 			throw new IllegalArgumentException("Layer should be less or equal to " + MapBlock.NUM_LAYER);
-		if (!this.isValidValue(pic_id, MapBlock.PIC_ID_SIZE))
-			throw new IllegalArgumentException("Invalid picture ID");		
+		if (!this.isValidValue(img_id, MapBlock.IMG_ID_SIZE))
+			throw new IllegalArgumentException("Invalid image ID");		
 		par.setLayerIDParameter(layer - 1);		
-		setID(pic_id);
+		setID(img_id);
 	}
 	
 	/**
@@ -218,18 +218,18 @@ public final class MapBlock {
 		
 		// sets the parameters respecting to layer
 		private void setLayerIDParameter(int layer) {
-			pos = MapBlock.PIC_ID_SIZE * layer / Byte.SIZE;
-			offset = MapBlock.PIC_ID_SIZE * layer % Byte.SIZE;
+			pos = MapBlock.IMG_ID_SIZE * layer / Byte.SIZE;
+			offset = MapBlock.IMG_ID_SIZE * layer % Byte.SIZE;
 			upper = Byte.SIZE - offset;
-			lower = (MapBlock.PIC_ID_SIZE + offset) % Byte.SIZE;
+			lower = (MapBlock.IMG_ID_SIZE + offset) % Byte.SIZE;
 			lower_rest = Byte.SIZE - lower;
-			len = (MapBlock.PIC_ID_SIZE - upper - lower) / Byte.SIZE;
+			len = (MapBlock.IMG_ID_SIZE - upper - lower) / Byte.SIZE;
 		}
 		
 		// sets the parameters respecting to block
 		private void setBlockIDParameter() {
-			pos = MapBlock.PIC_ID_SIZE * MapBlock.NUM_LAYER / Byte.SIZE;
-			offset = MapBlock.PIC_ID_SIZE * MapBlock.NUM_LAYER % Byte.SIZE;
+			pos = MapBlock.IMG_ID_SIZE * MapBlock.NUM_LAYER / Byte.SIZE;
+			offset = MapBlock.IMG_ID_SIZE * MapBlock.NUM_LAYER % Byte.SIZE;
 			upper = Byte.SIZE - offset;
 			lower = (offset + MapBlock.BLOCK_ID_SIZE) % Byte.SIZE;
 			lower_rest = Byte.SIZE - lower;

@@ -1,4 +1,4 @@
-package mapMaker;
+package Map.MapBlock;
 
 import java.io.IOException;
 import java.io.OutputStream;

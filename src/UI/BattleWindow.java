@@ -21,9 +21,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+
+import simulator.RPGMap;
 import util.MusicPlayer;
 
-import map.RPGMap;
 
 public class BattleWindow extends JFrame implements Observer {
 	public static int WIDTH = 500;

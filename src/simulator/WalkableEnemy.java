@@ -1,8 +1,9 @@
-package map;
+package simulator;
 
 import java.awt.Image;
 import java.util.List;
 import java.util.Random;
+
 
 import util.RPGWalkLoader;
 

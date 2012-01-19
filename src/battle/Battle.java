@@ -17,8 +17,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import map.RPGMap;
 
+import simulator.RPGMap;
 import util.MusicPlayer;
 import util.SeriesImageLoader;
 

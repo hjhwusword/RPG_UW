@@ -17,10 +17,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+
+import simulator.RPGMap;
+import simulator.WalkableCharacter;
 import util.RPGWalkLoader;
 
-import map.RPGMap;
-import map.WalkableCharacter;
 
 public class MapPanel extends JPanel implements ActionListener{
 	
