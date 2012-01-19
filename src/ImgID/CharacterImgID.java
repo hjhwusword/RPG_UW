@@ -1,4 +1,4 @@
-package Map.IDs;
+package ImgID;
 
 import java.util.LinkedList;
 
